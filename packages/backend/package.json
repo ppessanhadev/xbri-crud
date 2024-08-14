@@ -1,6 +1,6 @@
 {
-  "name": "xbri-crud-backend",
-  "version": "0.0.1",
+  "name": "backend",
+  "version": "1.0.0",
   "author": "Pablo Pessanha <pablopessanh@gmail.com>",
   "private": true,
   "license": "UNLICENSED",

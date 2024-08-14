@@ -1,7 +1,9 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "author": "Pablo Pessanha <pablopessanh@gmail.com>",
   "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
