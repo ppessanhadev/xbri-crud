@@ -1,11 +1,11 @@
-import { PencilIcon, EraserIcon } from 'lucide-react';
+'use client';
 
 import { Product } from '@/types/Product';
-import { Button } from '@/components/ui/button';
+import { CardActionButtons } from '@/components/card-action-button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardTitle, CardItem } from '@/components/ui/card';
 
-export function CardProduct({ name, price, quantity, description, image }: Product) {
+export function CardProduct({ id, name, price, quantity, description, image }: Product) {
   function formatter(value: number) {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
@@ -28,15 +28,7 @@ export function CardProduct({ name, price, quantity, description, image }: Produ
         <CardItem item="descrição">{description}</CardItem>
       </CardContent>
 
-      <CardContent className="ml-auto flex flex-col gap-2">
-        <Button variant="ghost" size="icon">
-          <PencilIcon className="h-5 w-5 text-yellow-600" />
-        </Button>
-
-        <Button variant="ghost" size="icon">
-          <EraserIcon className="h-5 w-5 text-red-600" />
-        </Button>
-      </CardContent>
+      <CardActionButtons id={id} />
     </Card>
   );
 }

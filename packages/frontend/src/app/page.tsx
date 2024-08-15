@@ -22,6 +22,8 @@ export default async function Home() {
       {data.map((product) => (
         <CardProduct {...product} key={product.id} />
       ))}
+
+      {!data?.length && <h1 className="text-3xl mt-2">Sem produtos registrados. :(</h1>}
     </main>
   );
 }

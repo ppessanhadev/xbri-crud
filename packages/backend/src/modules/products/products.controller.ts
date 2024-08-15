@@ -1,4 +1,4 @@
-import { Body, Inject, Query } from '@nestjs/common';
+import { Body, Inject, Param } from '@nestjs/common';
 import { DefineController, UseRoute } from '@/common/decorators';
 import { ProductsService } from '@/modules/products/products.service';
 import { CreateProductRequest, ListProductResponse, UpdateProductRequest } from '@/modules/products/schemas';
@@ -39,10 +39,11 @@ export class ProductController {
   @UseRoute({
     method: 'DELETE',
     summary: 'Deletes specific product',
-    queries: [{ name: 'id', example: 1 }],
+    route: '/:id',
+    params: [{ name: 'id', example: '1' }],
     code: 204,
   })
-  public async delete(@Query('id') id: string) {
+  public async delete(@Param('id') id: string) {
     return this.productService.delete(id);
   }
 }
