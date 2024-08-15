@@ -26,7 +26,7 @@ const appConfig = (app: INestApplication) => {
 };
 
 const initialize = async () => {
-  const port = process.env.PORT || '3000';
+  const port = '3741';
   const isDev = process.env.NODE_ENV === 'development';
   const app = await NestFactory.create(ApplicationModule);
 

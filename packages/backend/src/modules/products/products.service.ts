@@ -8,7 +8,7 @@ export class ProductsService {
   constructor(private readonly db: DatabaseService) {}
 
   public async list() {
-    return this.db.product.findMany();
+    return this.db.product.findMany({ orderBy: { id: 'desc' } });
   }
 
   public async create(data: CreateProductBody) {

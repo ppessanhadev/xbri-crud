@@ -7,7 +7,7 @@ const UpdateProductSchema = z.object({
   id: z.preprocess((v) => Number(v), z.number({ required_error }).int()),
   name: z.string().optional(),
   description: z.string().optional(),
-  image: z.string().url().optional(),
+  image: z.string().optional(),
   quantity: z.preprocess((v) => Number(v), z.number({ required_error }).int()).optional(),
   price: z.preprocess((v) => Number(v), z.number({ required_error })).optional(),
 });

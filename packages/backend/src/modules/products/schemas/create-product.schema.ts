@@ -6,7 +6,7 @@ const required_error = 'Campo obrigatório';
 const CreateProductSchema = z.object({
   name: z.string({ required_error }),
   description: z.string().optional(),
-  image: z.string().url().optional(),
+  image: z.string().optional(),
   quantity: z.preprocess((v) => Number(v), z.number({ required_error }).int()),
   price: z.preprocess((v) => Number(v), z.number({ required_error })),
 });
