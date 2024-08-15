@@ -1,6 +1,7 @@
-import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { DatabaseService } from '@/common/database/database.service';
 import { CreateProductBody } from '@/modules/products/schemas/create-product.schema';
+import { UpdateProductBody } from './schemas/update-product.schema';
 
 @Injectable()
 export class ProductsService {
@@ -8,6 +9,18 @@ export class ProductsService {
 
   public async create(data: CreateProductBody) {
     await this.db.product.create({ data });
+  }
+
+  public async update(data: UpdateProductBody) {
+    const { id, ...content } = data;
+    const product = await this.db.product.findFirst({ where: { id } });
+
+    if (!product) {
+      throw new BadRequestException('Produto não encontrado.');
+    }
+
+    const response = await this.db.product.update({ data: content, where: { id } });
+    return response;
   }
 
   public async delete(id: number | string) {

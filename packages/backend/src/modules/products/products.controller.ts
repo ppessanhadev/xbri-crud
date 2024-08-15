@@ -2,6 +2,7 @@ import { Body, Inject, Query } from '@nestjs/common';
 import { DefineController, UseRoute } from '@/common/decorators';
 import { ProductsService } from '@/modules/products/products.service';
 import { CreateProductRequest } from '@/modules/products/schemas/create-product.schema';
+import { UpdateProductRequest } from './schemas/update-product.schema';
 
 @DefineController('products')
 export class ProductController {
@@ -9,6 +10,15 @@ export class ProductController {
     @Inject(ProductsService)
     private readonly productService: ProductsService,
   ) {}
+
+  @UseRoute({
+    method: 'UPDATE',
+    summary: 'Updates field of an existent product',
+    response: { type: UpdateProductRequest },
+  })
+  public async update(@Body() body: UpdateProductRequest) {
+    return this.productService.update(body);
+  }
 
   @UseRoute({
     method: 'POST',
