@@ -1,11 +1,11 @@
-import { PlusIcon } from 'lucide-react';
-
 import { CardProduct } from '@/components/card-product';
-import { Button } from '@/components/ui/button';
+import { DialogCreate } from '@/components/dialog-create';
 import { Product } from '@/types/Product';
 
 export default async function Home() {
-  const response = await fetch('http://localhost:3000/api/v1/products');
+  const response = await fetch('http://localhost:3741/api/v1/products', {
+    next: { tags: ['products-list'] },
+  });
   const data: Product[] = await response.json();
 
   return (
@@ -17,13 +17,7 @@ export default async function Home() {
         </em>
       </h1>
 
-      <Button
-        variant="outline"
-        className="self-end dark:border-green-700 dark:hover:bg-green-700 border-green-700 hover:border-green-700"
-      >
-        <PlusIcon className="w-4 h-4 mr-2" />
-        Adicionar novo produto
-      </Button>
+      <DialogCreate />
 
       {data.map((product) => (
         <CardProduct {...product} key={product.id} />
