@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
+    "prestart:dev": "pnpm prisma db push",
     "start:dev": "NODE_ENV=development nest start --watch",
     "start:prod": "node dist/src/main",
     "generate": "pnpx prisma generate",
