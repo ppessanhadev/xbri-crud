@@ -7,6 +7,10 @@ import { UpdateProductBody } from './schemas/update-product.schema';
 export class ProductsService {
   constructor(private readonly db: DatabaseService) {}
 
+  public async list() {
+    return this.db.product.findMany();
+  }
+
   public async create(data: CreateProductBody) {
     await this.db.product.create({ data });
   }

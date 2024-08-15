@@ -1,8 +1,7 @@
 import { Body, Inject, Query } from '@nestjs/common';
 import { DefineController, UseRoute } from '@/common/decorators';
 import { ProductsService } from '@/modules/products/products.service';
-import { CreateProductRequest } from '@/modules/products/schemas/create-product.schema';
-import { UpdateProductRequest } from './schemas/update-product.schema';
+import { CreateProductRequest, ListProductResponse, UpdateProductRequest } from '@/modules/products/schemas';
 
 @DefineController('products')
 export class ProductController {
@@ -12,12 +11,11 @@ export class ProductController {
   ) {}
 
   @UseRoute({
-    method: 'UPDATE',
-    summary: 'Updates field of an existent product',
-    response: { type: UpdateProductRequest },
+    summary: 'Lists all products on database',
+    response: { type: ListProductResponse },
   })
-  public async update(@Body() body: UpdateProductRequest) {
-    return this.productService.update(body);
+  public async list() {
+    return this.productService.list();
   }
 
   @UseRoute({
@@ -27,6 +25,15 @@ export class ProductController {
   })
   public async create(@Body() body: CreateProductRequest) {
     return this.productService.create(body);
+  }
+
+  @UseRoute({
+    method: 'UPDATE',
+    summary: 'Updates field of an existent product',
+    response: { type: UpdateProductRequest },
+  })
+  public async update(@Body() body: UpdateProductRequest) {
+    return this.productService.update(body);
   }
 
   @UseRoute({
