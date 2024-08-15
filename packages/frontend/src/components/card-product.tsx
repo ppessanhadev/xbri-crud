@@ -14,7 +14,7 @@ export function CardProduct({ name, price, quantity, description, image }: Produ
   }
 
   return (
-    <Card className="p-4 w-[700px] items-center">
+    <Card className="p-4 w-full items-center">
       <Avatar>
         <AvatarImage src={image} />
         <AvatarFallback>NO IMAGE</AvatarFallback>
