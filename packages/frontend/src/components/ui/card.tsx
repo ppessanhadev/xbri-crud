@@ -44,7 +44,7 @@ type CardItemProps = { item: string } & React.HTMLAttributes<HTMLSpanElement>;
 const CardItem = React.forwardRef<HTMLSpanElement, CardItemProps>(({ className, children, item, ...props }, ref) => (
   <span ref={ref} className={cn('block', className)} {...props}>
     <b className="mr-1 capitalize">{item}:</b>
-    {children}
+    {children ? children : '-'}
   </span>
 ));
 CardItem.displayName = 'CardItem';
