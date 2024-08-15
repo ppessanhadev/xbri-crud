@@ -10,7 +10,10 @@ export class DatabaseService extends PrismaClient implements OnModuleInit {
 
   public async onModuleInit() {
     await this.$connect();
-    await Promise.all([this.product.create({ data: seed[0] }), this.product.create({ data: seed[1] })]);
+    const quantity = await this.product.count();
+    if (!quantity) {
+      await Promise.all([this.product.create({ data: seed[0] }), this.product.create({ data: seed[1] })]);
+    }
   }
 
   public async beforeApplicationShutdown() {
