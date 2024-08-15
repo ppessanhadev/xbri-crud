@@ -5,7 +5,9 @@ import { CardActionButtons } from '@/components/card-action-button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardTitle, CardItem } from '@/components/ui/card';
 
-export function CardProduct({ id, name, price, quantity, description, image }: Product) {
+export function CardProduct(product: Product) {
+  const { name, price, quantity, description, image } = product;
+
   function formatter(value: number) {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
@@ -28,7 +30,7 @@ export function CardProduct({ id, name, price, quantity, description, image }: P
         <CardItem item="descrição">{description}</CardItem>
       </CardContent>
 
-      <CardActionButtons id={id} />
+      <CardActionButtons {...product} />
     </Card>
   );
 }
